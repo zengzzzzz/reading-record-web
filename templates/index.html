@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Reading Records</title>
+</head>
+<body>
+	<h1>Reading Records</h1>
+	<ul id="records">
+		{% for record in records %}
+			<li>{{ record.title }} by {{ record.author }}</li>
+		{% endfor %}
+	</ul>
+	<form id="recordForm">
+		<input type="text" name="title" placeholder="Title" required>
+		<input type="text" name="author" placeholder="Author" required>
+		<button type="submit">Add Record</button>
+	</form>
+	<script>
+		document.getElementById('recordForm').addEventListener('submit', function(event) {
+			event.preventDefault();
+			const formData = new FormData(event.target);
+			fetch('/add', {
+				method: 'POST',
+				body: formData
+			})
+			.then(response => response.json())
+			.then(record => {
+				const li = document.createElement('li');
+				li.textContent = `${record.title} by ${record.author}`;
+				document.getElementById('records').appendChild(li);
+				event.target.reset();
+			});
+		});
+	</script>
+</body>
+</html>
