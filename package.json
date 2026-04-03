@@ -1,0 +1,27 @@
+{
+  "name": "reading-record-web",
+  "version": "1.0.0",
+  "description": "一个用于管理图书和文章阅读记录的个人网站",
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build && cd ../backend && npm run build",
+    "start": "cd backend && npm start",
+    "typecheck": "cd backend && npm run typecheck && cd ../frontend && npm run typecheck"
+  },
+  "keywords": [
+    "reading",
+    "books",
+    "tracking",
+    "react",
+    "express",
+    "sqlite"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
